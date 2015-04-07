@@ -179,6 +179,9 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Properties\PublishProfiles\kolomiks-wedding.PublishSettings" />
+    <None Include="Properties\PublishProfiles\kolomiks-wedding - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\kolomiks-wedding - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\kolomiks-wedding.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
