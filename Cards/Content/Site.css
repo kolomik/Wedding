@@ -7,6 +7,12 @@
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+    width: 960px;
+}
+
+.body-content-full {
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -21,4 +27,9 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+td.long-input input[type=text] {
+    width: 600px;
+    max-width: 600px;
 }

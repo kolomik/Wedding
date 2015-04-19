@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Cards.Context.Models.Invitation>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutMngr.cshtml";
+}
+
+<h2>Invites</h2>
+
+<p>
+    @Html.ActionLink( "Create New", "Create" )
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor( model => model.FriendlyName )
+        </th>
+        <th>
+            @Html.DisplayNameFor( model => model.IsAccepted )
+        </th>
+        <th>
+            @Html.DisplayNameFor( model => model.Persons )
+        </th>
+
+        <th>
+            URL
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach ( var item in Model )
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor( modelItem => item.FriendlyName )
+            </td>
+            <td>
+                @Html.DisplayFor( modelItem => item.IsAccepted )
+            </td>
+            <td>
+                @Html.DisplayTextFor( modelItem => item.Persons.Count )
+            </td>
+            <td class="long-input">
+                <input type="text" readonly="readonly" value="@Url.Action( "Show", "Invitations", new
+                                                         {
+                                                             id = string.IsNullOrEmpty(item.FriendlyName)?item.ID.ToString():item.FriendlyName
+                                                         }, Request.Url.Scheme )" />
+            </td>
+            <td>
+                @Html.ActionLink( "Edit", "Edit", new
+       {
+           id = item.ID
+       } ) |
+                @Html.ActionLink( "Details", "Details", new
+       {
+           id = item.ID
+       } ) |
+                @Html.ActionLink( "Delete", "Delete", new
+       {
+           id = item.ID
+       } )
+            </td>
+        </tr>
+    }
+
+</table>
