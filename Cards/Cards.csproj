@@ -288,6 +288,7 @@
     <Content Include="Views\Invitations\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutMngr.cshtml" />
     <Content Include="Views\Invitations\Show.cshtml" />
+    <Content Include="Views\Invitations\Nothing.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

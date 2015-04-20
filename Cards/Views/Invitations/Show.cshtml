@@ -1,7 +1,12 @@
-﻿@model dynamic
+﻿@model Cards.Context.Models.Invitation
 
 @{
-    ViewBag.Title = "title";
+    ViewBag.Title = "Приглашение на свадьбу Евгения и Натальи";
 }
 
-<h2>title</h2>
+<h2>Приглашение на свадьбу</h2>
+<div>Уважаем@(Model.Persons.Count > 1 ? "ые" : "ый")</div>
+@foreach ( var person in Model.Persons )
+{
+    <div>@person.FullName</div>
+}

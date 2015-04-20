@@ -86,6 +86,15 @@ namespace Cards
                     id = UrlParameter.Optional
                 }
             );
+
+            routes.MapRoute( name: "Error",
+                url: "{*url}",
+                defaults: new
+            {
+                controller = "Invitations",
+                action = "Show",
+                id = UrlParameter.Optional
+            } );
         }
     }
 }

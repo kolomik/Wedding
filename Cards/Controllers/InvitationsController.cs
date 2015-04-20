@@ -141,7 +141,34 @@ namespace Cards.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> Show ( string id )
         {
-            return View();
+            var cookieName = "securityTokenExtended";
+            var guid = Guid.Empty;
+            Invitation invite = null;
+
+            if ( string.IsNullOrEmpty( id ) )
+            {
+                var cc = Request.Cookies.Get( cookieName );
+                if ( cc != null )
+                    id = cc.Value;
+            }
+            if ( Guid.TryParse( id, out guid ) )
+            {
+                invite = await db.Invitations.Include( x => x.Persons ).FirstOrDefaultAsync( x => x.ID == guid );
+            }
+            else
+            {
+                invite = await db.Invitations.Include( x => x.Persons ).FirstOrDefaultAsync( x => x.FriendlyName == id );
+            }
+            if ( invite == null )
+            {
+                return View( "Nothing" );
+            }
+            Response.Cookies.Add( new HttpCookie( cookieName, invite.ID.ToString() )
+            {
+                Shareable = false,
+                Expires = DateTime.Now.AddMonths( 6 )
+            } );
+            return View( invite );
         }
 
         protected override void Dispose ( bool disposing )

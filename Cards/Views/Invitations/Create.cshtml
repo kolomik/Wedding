@@ -46,7 +46,7 @@
        } )
             <div class="col-md-10">
                 <div class="checkbox">
-                    @Html.EditorFor( model => model.IsAccepted )
+                    @Html.DisplayFor( model => model.IsAccepted )
                     @Html.ValidationMessageFor( model => model.IsAccepted, "", new
                {
                    @class = "text-danger"
@@ -55,17 +55,20 @@
             </div>
         </div>
         <div class="form-group">
-            <table>
-                @foreach ( var person in ListHelper.GetPersons( null ) )
-                {
-                    <tr>
-                        <td>
-                            <input type="checkbox" id="chk+@person.Person.ID" name="Persons" value="@person.Person.ID" @(person.IsSelected ? "checked='checked'" : "") />
-                            <label for="chk+@person.Person.ID">@person.Person.ShortName (@person.Person.FullName)</label>
-                        </td>
-                    </tr>
-                }
-            </table>
+            <label class="control-label col-md-2">People</label>
+            <div class="col-md-10">
+                <table>
+                    @foreach ( var person in ListHelper.GetPersons( null ) )
+                    {
+                        <tr>
+                            <td>
+                                <input type="checkbox" id="chk+@person.Person.ID" name="Persons" value="@person.Person.ID" @(person.IsSelected ? "checked='checked'" : "") />
+                                <label for="chk+@person.Person.ID">@person.Person.ShortName (@person.Person.FullName)</label>
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
         </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
