@@ -87,6 +87,17 @@ namespace Cards
                 }
             );
 
+            routes.MapRoute(
+               name: "About",
+               url: "About",
+               defaults: new
+               {
+                   controller = "Invitations",
+                   action = "About",
+                   id = UrlParameter.Optional
+               }
+           );
+
             routes.MapRoute( name: "Error",
                 url: "{*url}",
                 defaults: new

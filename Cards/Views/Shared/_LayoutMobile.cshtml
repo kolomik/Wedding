@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=1024">
     <title>@ViewBag.Title</title>
 
     <script type="text/javascript">
@@ -16,11 +16,12 @@
         appInsights.trackPageView();
     </script>
 
-    @Styles.Render( "~/Content/css" )
+    @Styles.Render( "~/Content/css-min" )
     @Scripts.Render( "~/bundles/modernizr" )
+    @RenderSection( "head", required: false )
 
 </head>
-<body>
+<body style="padding-top: 50px;padding-bottom: 20px;">
     @*<div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
@@ -41,8 +42,7 @@
                 </div>
             </div>
         </div>*@
-    <div class="container body-content">
-        <h1>Mobile</h1>
+    <div class="container-show body-content">
         @RenderBody()
         @*<hr />
             <footer>
@@ -53,5 +53,21 @@
     @Scripts.Render( "~/bundles/jquery" )
     @Scripts.Render( "~/bundles/bootstrap" )
     @RenderSection( "scripts", required: false )
+
+    <script type="text/javascript" language="javascript">
+        $(document).ready(function () {
+            var ua = navigator.userAgent;
+            var iOS = !!ua.match(/iPad/i) || !!ua.match(/iPhone/i);
+            var webkit = !!ua.match(/WebKit/i);
+            var iOSSafari = iOS && webkit && !ua.match(/CriOS/i);
+
+            //alert(iOS, webkit, iOSSafari);
+
+            if (iOS) {
+                $('.body-content').addClass('safariFix');
+                //alert($('.body-content').css());
+            }
+        });
+    </script>
 </body>
 </html>

@@ -25,6 +25,9 @@ namespace Cards
 
             bundles.Add( new StyleBundle( "~/Content/css" ).Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/site-mngr.css" ) );
+
+            bundles.Add( new StyleBundle( "~/Content/css-min" ).Include(
                       "~/Content/site.css" ) );
         }
     }

@@ -1,12 +1,71 @@
 ﻿@model Cards.Context.Models.Invitation
 
 @{
-    ViewBag.Title = "Приглашение на свадьбу Евгения и Натальи";
+    var isHaveInvite = Model != null;
+    ViewBag.Title = isHaveInvite ? "Приглашение на свадьбу Евгения и Натальи" : "Свадьба Евгения и Натальи";
 }
 
-<h2>Приглашение на свадьбу</h2>
-<div>Уважаем@(Model.Persons.Count > 1 ? "ые" : "ый")</div>
-@foreach ( var person in Model.Persons )
+<div class="@(isHaveInvite?"click":"") swing panel hidden">
+    <div class="front to-hide">
+        <div class="nice-font right-side">
+            <div class="invite">
+                @if ( isHaveInvite )
+                {
+                    <span><span class="first-letter">П</span>риглашение на свадьбу</span>
+                }
+                else
+                {
+                    <span><span class="first-letter">С</span>вадьба</span>
+                }
+            </div>
+            <div class="names">
+                <div class="E">Евгения</div>
+                <div class="amp">&amp;</div>
+                <div class="N">Натальи</div>
+            </div>
+        </div>
+    </div>
+    @if ( isHaveInvite )
+    {
+        <div class="back to-hide">
+        </div>
+
+        <div class="content to-hide"></div>
+    }
+    <div class="revers">
+        <h1>Свадьба Евгения и Натальи</h1>
+        <h3>Пожалуйста, подождите...</h3>
+    </div>
+</div>
+
+
+@*<h2>Приглашение на свадьбу</h2>
+    <div>Уважаем@(Model.Persons.Count > 1 ? "ые" : "ый")</div>
+    @foreach ( var person in Model.Persons )
+    {
+        <div>@person.FullName</div>
+    }*@
+
+@section scripts
 {
-    <div>@person.FullName</div>
+    @if ( isHaveInvite )
+    {
+        <script>
+            $(document).ready(function () {
+                // set up click/tap panels
+                $('.front, .back').click(function () {
+                    $('.click').toggleClass('flip');
+                });
+            });
+        </script>
+    }
+
+    <script>
+        $(window).load(function () {
+            $('.swing.panel').removeClass('hidden');
+            //setTimeout(function () {
+            //    $('.click').removeClass('hidden');
+            //}, 3000);
+        });
+    </script>
 }

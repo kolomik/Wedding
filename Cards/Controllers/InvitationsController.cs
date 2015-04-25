@@ -161,7 +161,7 @@ namespace Cards.Controllers
             }
             if ( invite == null )
             {
-                return View( "Nothing" );
+                return View( "Show", null );
             }
             Response.Cookies.Add( new HttpCookie( cookieName, invite.ID.ToString() )
             {
@@ -169,6 +169,11 @@ namespace Cards.Controllers
                 Expires = DateTime.Now.AddMonths( 6 )
             } );
             return View( invite );
+        }
+
+        public async Task<ActionResult> About ()
+        {
+            return View( "Show", null );
         }
 
         protected override void Dispose ( bool disposing )
